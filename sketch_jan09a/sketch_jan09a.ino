@@ -29,7 +29,7 @@ void loop() {
     if (!sensitivityCheck(sensorOneSignal, senstivity)) {
       inMotion = true;
     }
-  } while (!inMotion)
+  } while (!inMotion);
 
 
   // IN MOTION PHASE
