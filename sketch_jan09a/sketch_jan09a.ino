@@ -21,8 +21,7 @@ void loop() {
 
 
   // PRE-MOTION PHASE CHECK
-  // if sensor is outside the range, and it isnt already in motion begin moving
-  // reads sensor input at least once
+  // reads sensor input at least once from program runtime
   // if train is in the range, set inMotion to true (train is now going to move)
   // and break from the checking phase
   do {
