@@ -1,10 +1,11 @@
-const GATEDIST = 400;
-const GATEDISTERROR = 10;
+const int GATEDIST = 400;
+const int GATEDISTERROR = 10;
 
-const DELAYTIME = 5000;
+const int DELAYTIME = 5000;
 
 int sensorOne = 1;
 int senstivity = 300;
+int sensorOneSignal;
 
 bool inMotion = false;
 
