@@ -10,19 +10,31 @@ bool inMotion = false;
 
 void setup() {
   // put your setup code here, to run once:
+
+  // sleeps the program to give us time to position train on the track
   delay(DELAYTIME);
   pinMode(sensorOne, INPUT);
 }
 
 void loop() {
-
   // put your main code here, to run repeatedly:
-  sensorOneSignal = analogRead(sensorOne);
 
-  // if sensor is outside the range, begin moving
-  if (!(sensitivityCheck(sensorOneSignal, senstivity) || inMotion)) {
-    moveTrain();
-  }
+
+  // PRE-MOTION PHASE CHECK
+  // if sensor is outside the range, and it isnt already in motion begin moving
+  // reads sensor input at least once
+  // if train is in the range, set inMotion to true (train is now going to move)
+  // and break from the checking phase
+  do {
+    sensorOneSignal = analogRead(sensorOne);
+    if (!sensitivityCheck(sensorOneSignal, senstivity)) {
+      inMotion = true;
+    }
+  } while (!inMotion)
+
+
+  // IN MOTION PHASE
+  moveTrain();
 }
 
 
