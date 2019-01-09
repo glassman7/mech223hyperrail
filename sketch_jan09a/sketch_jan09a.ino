@@ -52,7 +52,7 @@ bool sensitivityCheck(int signal, int sens) {
   return (
     ((signal - sens) <= (GATEDIST + GATEDISTERROR)) ||   // CASE 1
     ((signal + sens) >= (GATEDIST - GATEDISTERROR))      // CASE 2
-  )
+  );
 }
 
 
