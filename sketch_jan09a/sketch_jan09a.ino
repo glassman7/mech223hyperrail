@@ -33,11 +33,6 @@ void setup() {
   pinMode(echoPin, OUTPUT);
 
   Serial.begin(9600);
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
-
 
   // PRE-MOTION PHASE CHECK
   // reads sensor input at least once from program runtime
@@ -49,7 +44,10 @@ void loop() {
       inMotion = true;
     }
   } while (!inMotion);
+}
 
+void loop() {
+  // put your main code here, to run repeatedly:
 
   // IN MOTION PHASE
   moveTrain();
