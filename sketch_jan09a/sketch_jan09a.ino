@@ -1,112 +1,70 @@
-// Initialization of constant parameters pertaining to train and start gate
-// distance, subject to change.
-const int GATEDIST = 400;
-const int GATEDISTERROR = 40;
-
-// Initialization of constant parameters pertaining to duration of the triggers
-// of the ultrasonic sensor.
-// As of now, triggers are 10 microseconds long and 2 microseconds apart.
-const int TRIGDURATION = 10;
-const int RESTDURATION = 2;
-
-
-// Arduino Pins initialization
-const int preMotionIndicatorPin = 7;
-const int testPin = 8;
 const int trigPin = 9;
 const int echoPin = 10;
 
+const int greenPin = 6;
+const int bluePin = 7;
+const int redPin = 8;
 
-// Time for members to place and position the train from the starting gate
-// Subject to change.
-const int DELAYTIME = 5000;
+long duration;
+int distance;
 
+bool notStarted = true;
 
-// SensorOne (ultrasonic sensor) sensitivity and signal value variables
-const int senstivity = 300;
-int sensorOneSignal;
-
-// Duration and distance for sensorOne
-// Duration is in microseconds, hence a large value is expected.  Long keyword assigned.
-long  duration;
-int   distance;
-
-// Boolean Variables
-bool  completed = false;  // Has the train already completed the round?
-bool  inMotion = false;   // Has the gate already opened and the train is moving?
 
 void setup() {
-  // sleeps the program to give us time to place train on track
-  // if sensor is outside the range, and it isnt already in motion begin moving to position train on the track
-  delay(DELAYTIME);
+  // put your setup code here, to run once:
 
-  // Ultrasonic pin declaration
-  pinMode(trigPin, INPUT);
-  pinMode(echoPin, OUTPUT);
-  pinMode(testPin, OUTPUT);
-  pinMode(preMotionIndicatorPin, OUTPUT);
-
-  // Data stream between arduino and computer, limited due to demand from ultrasonic sensor
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(bluePin, OUTPUT);
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  
   Serial.begin(9600);
 
-  // PRE-MOTION PHASE CHECK
-  // reads sensor input at least once from program runtime
-  // if train is in the range, set inMotion to true (train is now going to move)
-  // and break from the checking phase
-  // THE PROGRAM WILL NOT CONTINUE TO THE SUPERLOOP UNTIL THE GATE HAS BEEN OPENED
-  digitalWrite(preMotionIndicatorPin, HIGH);  // preMotionIndicatorPin is high if the gate is not opened
-  while (!sensitivityCheck(computeDistance(), senstivity)) {}
-  digitalWrite(preMotionIndicatorPin, LOW);
-
+  digitalWrite(bluePin, HIGH);
+  normalize();
 }
 
 void loop() {
-  // If the round has not been completed yet, execute round code
-  if (!completed)
-    moveTrain();
+  // put your main code here, to run repeatedly:
+
+  // Pulse is 2 microseconds apart with width 10 micrseconds
+ 
+    if (notStarted) {
+      if (testFunction() < 10) {
+      digitalWrite(redPin, LOW);
+      digitalWrite(bluePin, HIGH);10
+      } else {
+      digitalWrite(bluePin, LOW);
+      digitalWrite(redPin, HIGH);
+      notStarted = false;
+      }
+    } else {
+      digitalWrite(greenPin, HIGH);
+      delay(1000);
+      digitalWrite(greenPin, LOW);
+      delay(1000);    
+    }
+  
 }
 
-// FUNCTION:  Returns the computed distance of the obstruction to the ultrasonic
-//            sensor in metres as a positive integer
-int computeDistance() {
-  // Ultrasonic sensor will fire 10 microsecond triggers 2 microseconds apart
-
-  // Trigger is set to low
+int testFunction() {
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(RESTDURATION);
-  // 2 microsecond delay between triggers
+  delayMicroseconds(2);
+
   digitalWrite(trigPin, HIGH);
-  delayMicroseconds(TRIGDURATION);
-  // Ultrasonic sensor will fire the trigger for 10 microseconds
-
-  // Trigger pin will be terminated so the signal can be properly received
-  // in the echo pin
+  delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  return ((pulseIn(echoPin, HIGH))*0.034/2);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034/2;
+
+  Serial.println(distance);
+
+  return distance;
 }
 
-
-
-// ASSUME:    Signal has sensitivity, and distance between gate and train has
-//            ERROR, signal is within range if the two range bands overlap
-// FUNCTION:  Returns true if signal is within the GATEDIST range taking in account of
-//            sensitivity, false otherwise.
-// PARAMETERS:
-//            signal: analog input from sensorOne
-//            sens: sensitivity of the signal
-//
-// CASE 1:    Signal lowerbound overlaps GATEDIST band
-// CASE 2:    Signal upperbound overlaps GATEDIST band
-bool sensitivityCheck(int signal, int sens) {
-  return (
-    ((signal - sens) <= (GATEDIST + GATEDISTERROR)) ||   // CASE 1
-    ((signal + sens) >= (GATEDIST - GATEDISTERROR))      // CASE 2
-  );
-}
-
-
-// Indicates that the gate has been opened and the sensor has detected it
-void moveTrain() {
-  digitalWrite(testPin, HIGH);
+void normalize() {
+  while(testFunction() < 6 && testFunction() > 4) {}  
 }
