@@ -1,5 +1,5 @@
 const int GATEDIST = 400;
-const int GATEDISTERROR = 10;
+const int GATEDISTERROR = 40;
 
 const int DELAYTIME = 5000;
 
@@ -12,7 +12,8 @@ bool inMotion = false;
 void setup() {
   // put your setup code here, to run once:
 
-  // sleeps the program to give us time to position train on the track
+  // sleeps the program to give us time to place train on track
+  // if sensor is outside the range, and it isnt already in motion begin moving to position train on the track
   delay(DELAYTIME);
   pinMode(sensorOne, INPUT);
 }
