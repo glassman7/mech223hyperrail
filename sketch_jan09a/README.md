@@ -66,6 +66,7 @@ const int RESTDURATION = 2;
 
 Pin Initialization (possibly subject to change due to wiring accomodations).
 ```c
+const int preMotionIndicatorPin = 7;
 const int testPin = 8;
 const int trigPin = 9;
 const int echoPin = 10;
