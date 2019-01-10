@@ -7,4 +7,5 @@ For access to version control of CAD drawings, refer to the HyperRail GrabCAD fo
 
 Additional changes to functionality will be implemented soon.
 
-[Additional information for Sketch A](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09a/README.md)
+[Additional information for Repo Sketch A](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09a/README.md)
+[Additional information for Repo Sketch B](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09b/README.md)
