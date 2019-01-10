@@ -5,8 +5,6 @@ const int GATEDISTERROR = 40;
 const int trigPin = 9;
 const int echoPin = 10;
 
-
-
 const int DELAYTIME = 5000;
 
 int   sensorOne = 1;
@@ -25,6 +23,8 @@ void setup() {
   // if sensor is outside the range, and it isnt already in motion begin moving to position train on the track
   delay(DELAYTIME);
   pinMode(sensorOne, INPUT);
+
+  // Ultrasonic initialization
   pinMode(trigPin, INPUT);
   pinMode(echoPin, OUTPUT);
 
@@ -40,7 +40,7 @@ void loop() {
   // if train is in the range, set inMotion to true (train is now going to move)
   // and break from the checking phase
   do {
-    sensorOneSignal = analogRead(sensorOne);
+    sensorOneSignal = computeDistance();
     if (!sensitivityCheck(sensorOneSignal, senstivity)) {
       inMotion = true;
     }
@@ -50,6 +50,18 @@ void loop() {
   // IN MOTION PHASE
   moveTrain();
 }
+
+
+int computeDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  return ((pulseIn(echoPin, HIGH)) * 0.034/2);
+}
+
 
 
 // ASSUME:  signal has sensitivity, and distance between gate and train has
