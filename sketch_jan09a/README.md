@@ -1,7 +1,7 @@
 # HyperRail Autonomous Code Concept (Group C5)
 **Group Members**:<br/>Yeshun Ma (glassman7), Bryden Kinsella, Wojtek Sobczyk, Jordan Garrison, Akhil Prabhu, Marc Vanderbanck, Audrey Alianto
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09a/sketch_jan09a.ino)
+**Build Status**: Indeterminate
 
 ## Directory
 1. [Key Features](#keyfeat)
