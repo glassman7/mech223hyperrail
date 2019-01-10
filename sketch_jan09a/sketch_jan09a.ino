@@ -1,13 +1,22 @@
 const int GATEDIST = 400;
 const int GATEDISTERROR = 40;
 
+
+const int trigPin = 9;
+const int echoPin = 10;
+
+
+
 const int DELAYTIME = 5000;
 
-int sensorOne = 1;
-int senstivity = 300;
-int sensorOneSignal;
+int   sensorOne = 1;
+int   senstivity = 300;
+int   sensorOneSignal;
 
-bool inMotion = false;
+long  duration;
+int   distance;
+
+bool  inMotion = false;
 
 void setup() {
   // put your setup code here, to run once:
@@ -16,6 +25,10 @@ void setup() {
   // if sensor is outside the range, and it isnt already in motion begin moving to position train on the track
   delay(DELAYTIME);
   pinMode(sensorOne, INPUT);
+  pinMode(trigPin, INPUT);
+  pinMode(echoPin, OUTPUT);
+
+  Serial.begin(9600);
 }
 
 void loop() {
