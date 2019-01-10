@@ -1,4 +1,4 @@
-# HyperRail Autonomous Code Concept (Group C5)
+# HyperRail Ultrasonic Sensor Implementation Concept (Group C5)
 **Group Members**:<br/>Yeshun Ma (glassman7), Bryden Kinsella, Wojtek Sobczyk, Jordan Garrison, Akhil Prabhu, Marc Vanderbanck, Audrey Alianto
 
 **Build Status**: Indeterminate
