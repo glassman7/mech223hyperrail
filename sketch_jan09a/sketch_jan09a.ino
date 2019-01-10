@@ -1,6 +1,9 @@
 const int GATEDIST = 400;
 const int GATEDISTERROR = 40;
 
+const int TRIGDURATION = 10;
+const int RESTDURATION = 2;
+
 const int testPin = 8;
 const int trigPin = 9;
 const int echoPin = 10;
@@ -52,12 +55,21 @@ void loop() {
   moveTrain();
 }
 
-
+// FUNCTION:  Returns the computed distance of the obstruction to the ultrasonic
+//            sensor in metres as a positive integer
 int computeDistance() {
+  // Ultrasonic sensor will fire 10 microsecond triggers 2 microseconds apart
+
+  // Trigger is set to low
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
+  delayMicroseconds(RESTDURATION);
+  // 2 microsecond delay between triggers
   digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
+  delayMicroseconds(TRIGDURATION);
+  // ultrasonic sensor will fire the trigger for 10 microseconds
+
+  // trigger pin will be terminated so the signal can be properly received
+  // in the echo pin
   digitalWrite(trigPin, LOW);
 
   return ((pulseIn(echoPin, HIGH))*0.034/2);
@@ -65,17 +77,16 @@ int computeDistance() {
 
 
 
-// ASSUME:  signal has sensitivity, and distance between gate and train has
-//          ERROR, signal is within range if the two range bands overlaps
-
-// FUNCTION: Returns true if signal is within the GATEDIST range taking in account of
-// sensitivity, false otherwise.
-
-// signal: analog input from sensorOne
-// sens: sensitivity of the signal
-
-// CASE 1: signal lowerbound overlaps GATEDIST band
-// CASE 2: signal upperbound overlaps GATEDIST band
+// ASSUME:    signal has sensitivity, and distance between gate and train has
+//            ERROR, signal is within range if the two range bands overlap
+// FUNCTION:  returns true if signal is within the GATEDIST range taking in account of
+//            sensitivity, false otherwise.
+// PARAMETERS:
+//            signal: analog input from sensorOne
+//            sens: sensitivity of the signal
+//
+// CASE 1:    signal lowerbound overlaps GATEDIST band
+// CASE 2:    signal upperbound overlaps GATEDIST band
 bool sensitivityCheck(int signal, int sens) {
   return (
     ((signal - sens) <= (GATEDIST + GATEDISTERROR)) ||   // CASE 1
@@ -84,8 +95,7 @@ bool sensitivityCheck(int signal, int sens) {
 }
 
 
-// Moves the move
-// TODO: Complete the implementation
+// Indicates that the gate has been opened and the sensor has detected it
 void moveTrain() {
   digitalWrite(testPin, HIGH);
 }
