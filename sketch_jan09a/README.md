@@ -26,6 +26,7 @@ The following code pertains to the autonomous functionality of the hyperrail tra
 ### Outstanding TODO's <a name="todo"></a>
   - Modify the constants with additional experimentation
   - Review the code for logical errors and bugs
+  - Expand on the moveTrain function
 
 Extra batteries are permitted to power the Arduino, as they do not contribute to the direct acceleration of the device, as quoted from the HyperRail Competition PDF:
 

@@ -42,6 +42,7 @@ void setup() {
   // Ultrasonic pin declaration
   pinMode(trigPin, INPUT);
   pinMode(echoPin, OUTPUT);
+  pinMode(testPin, OUTPUT);
 
   // Data stream between arduino and computer, limited due to demand from ultrasonic sensor
   Serial.begin(9600);
