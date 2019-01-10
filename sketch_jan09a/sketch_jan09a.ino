@@ -11,6 +11,7 @@ const int RESTDURATION = 2;
 
 
 // Arduino Pins initialization
+const int preMotionIndicatorPin = 7;
 const int testPin = 8;
 const int trigPin = 9;
 const int echoPin = 10;
@@ -43,6 +44,7 @@ void setup() {
   pinMode(trigPin, INPUT);
   pinMode(echoPin, OUTPUT);
   pinMode(testPin, OUTPUT);
+  pinMode(preMotionIndicatorPin, OUTPUT);
 
   // Data stream between arduino and computer, limited due to demand from ultrasonic sensor
   Serial.begin(9600);
@@ -52,12 +54,10 @@ void setup() {
   // if train is in the range, set inMotion to true (train is now going to move)
   // and break from the checking phase
   // THE PROGRAM WILL NOT CONTINUE TO THE SUPERLOOP UNTIL THE GATE HAS BEEN OPENED
-  do {
-    sensorOneSignal = computeDistance();
-    if (!sensitivityCheck(sensorOneSignal, senstivity)) {
-      inMotion = true;
-    }
-  } while (!inMotion);
+  digitalWrite(preMotionIndicatorPin, HIGH);  // preMotionIndicatorPin is high if the gate is not opened
+  while (!sensitivityCheck(computeDistance(), senstivity)) {}
+  digitalWrite(preMotionIndicatorPin, LOW);
+
 }
 
 void loop() {
