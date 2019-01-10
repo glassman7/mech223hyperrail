@@ -1,9 +1,10 @@
 const int GATEDIST = 400;
 const int GATEDISTERROR = 40;
 
-
+const int testPin = 8;
 const int trigPin = 9;
 const int echoPin = 10;
+
 
 const int DELAYTIME = 5000;
 
@@ -59,7 +60,7 @@ int computeDistance() {
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
 
-  return ((pulseIn(echoPin, HIGH)) * 0.034/2);
+  return ((pulseIn(echoPin, HIGH))*0.034/2);
 }
 
 
@@ -86,6 +87,5 @@ bool sensitivityCheck(int signal, int sens) {
 // Moves the move
 // TODO: Complete the implementation
 void moveTrain() {
-  // STUB
-  return;
+  digitalWrite(testPin, HIGH);
 }
