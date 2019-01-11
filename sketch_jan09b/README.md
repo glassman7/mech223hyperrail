@@ -34,12 +34,10 @@ This issue was bypassed by running ```> sudo chmod a+rw /dev/ttyACM0``` in a ter
 #### Before Gate Opening
 From the tabulated data, it was found that the data was largely consistent for when the gate was closed.  However, this data was not consistent throughout, as evidenced from the range.  An additional observation was made that this fluctuation would happen near the start.  It was concluded from this that should this sensor be implemented into the train design, a stabilization function be run before using any of the signals to ensure the data is stabilized before being used.
 
-![alt text](\https://cdn.discordapp.com/attachments/510705698326315026/533338696213200928/49742810_345823649585876_2117120587154325504_n.png "Logo Title Text 1")
+
 
 
 #### After Gate Opening
-A larger fluctuation was observed when the gate was opened.  This was consistent with what was expected, due to the fact that the sensor would be reading the environment of the test room, which was not relatively flat like that of the obstruction.  Since the purpose of the selection for this sensor was due to the fact that the indicator to which the gate would open was from a large spike in signal, this observation did not impede the function.  It was later observed that the
-
-![alt text](\https://cdn.discordapp.com/attachments/510705698326315026/533338696213200928/49742810_345823649585876_2117120587154325504_n.png "Logo Title Text 1")
+A larger fluctuation was observed when the gate was opened.  This was consistent with what was expected, due to the fact that the sensor would be reading the environment of the test room, which was not relatively flat like that of the obstruction.  Since the purpose of the selection for this sensor was due to the fact that the indicator to which the gate would open was from a large spike in signal, this observation did not impede the function.  It was later observed that the signal also stabilized to another value, however, this was most likely due to the fact that the environment became more constant, as evidenced below:
 
 ![alt text](https://cdn.discordapp.com/attachments/510705698326315026/533338919157366784/50020070_503666710041303_696482595482894336_n.png "Logo Title Text 1")
