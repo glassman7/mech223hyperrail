@@ -1,7 +1,8 @@
 # Arduino Ultrasonic Sensor Test
 Performed on January 10, 2019<br />
 
-[Sketch B Code](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09b/sketch_jan09b.ino" Code referenced for this experiment")
+Sketch B Code:<Br />
+ https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09b/sketch_jan09b.ino" 
 
 ## Purpose
 To determine the effectiveness of the ultrasonic sensor in terms of sensing fluctuations in distances corresponding to the opening of the mechanical gate.
