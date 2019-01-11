@@ -1,6 +1,6 @@
 # Arduino Ultrasonic Sensor Test
 Performed on January 10, 2019<br />
-glassman7
+[Sketch B Code](https://github.com/glassman7/mech223hyperrail/blob/master/sketch_jan09b/sketch_jan09b.ino" Code referenced for this experiment")
 
 ## Purpose
 To determine the effectiveness of the ultrasonic sensor in terms of sensing fluctuations in distances corresponding to the opening of the mechanical gate.
@@ -11,7 +11,7 @@ To determine the effectiveness of the ultrasonic sensor in terms of sensing fluc
 The ultrasonic sensor will be on the breadboard, and to achieve this, we used multiple wires of differing color
 2. Place sensor (using the edge of the circular features as a datum) within a known vicinity (5 cm in our case) of an obstruction, in our case, we used my hand to act as an obstruction
 3. Connect arduino to the computer
-4. Upload the code ```sketchb.ino``` to the Arduino through the Arduino IDE on the computer
+4. Upload the code ```sketch_jan09b.ino``` to the Arduino through the Arduino IDE on the computer
 5. Open the Serial Monitor feature to determine the distances, comment on the signal consistency with what was expected
 6. Quickly remove the obstruction, and comment on what is observed
 6. Make additional comments on any extra observations
