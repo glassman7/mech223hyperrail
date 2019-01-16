@@ -34,7 +34,7 @@ void loop() {
     if (notStarted) {
       if (testFunction() < 10) {
       digitalWrite(redPin, LOW);
-      digitalWrite(bluePin, HIGH);10
+      digitalWrite(bluePin, HIGH);
       } else {
       digitalWrite(bluePin, LOW);
       digitalWrite(redPin, HIGH);
